@@ -1,0 +1,327 @@
+{
+  "source": "Emsal-Karar.pdf",
+  "parser_used": "pymupdf",
+  "pages": [
+    {
+      "page_number": 1,
+      "text": "T.C. \nYARGITAY \n9. Hukuk Dairesi \n \nESAS NO \n: 2016/25300  \nKARAR NO \n: 2016/21744 \nY A R G I T A Y   İ L A M I \n \nMAHKEMESİ \n: BAKIRKÖY 29. İŞ MAHKEMESİ \nTARİHİ : 25/03/2016 \nNUMARASI \n: 2016/86-2016/115 \nDAVACI : AT VE TİC LTD ŞTİ. ADINA AVUKAT RK \nDAVALI : CK  \n \nDAVA : Davacı, arabulucu ve taraflar arasında düzenlenen arabuluculuk tutanağına icra edilebilirlik \nşerhi verilmesine karar verilmesini istemiştir. \n                                    Yerel mahkemece, davanın reddine karar verilmiştir.   \n \nHüküm süresi içinde davacı avukatı tarafından temyiz edilmiş olmakla, dava dosyası için \nTetkik Hakimi  tarafından düzenlenen rapor dinlendikten sonra dosya incelendi, gereği konuşulup \ndüşünüldü: \n \nY A R G I T A Y     K A R A R I \nTaraflar arasındaki uyuşmazlık arabulucu ve taraflar arasında düzenlenen arabulucu tutanağına \nmahkemece icra edilebilirlik şerhinin verilmesi gerekip gerekmediği noktasında toplanmaktadır. \nSomut uyuşmazlıkta davacı şirket vekili davalı işçi ile işçi alacaklarının belirlenmesi ve ödenmesine \nilişkin arabulucu nezaretinde anlaşmaya varıldığını, bu konuda 04.02.2016 tarihli tutanağın \ndüzenlendiğini belirterek bu belgeye icra edilebilirlik şerhi verilmesini talep etmiştir.   \nDavalı işçi ise davacı işverence işten çıkarıldığını, çıkış esnasında muhasebeci gelecek ve evrakları \nhazırlayacak diyerek 7-8 saat bekletildiğini, sonra daha önce görmediği bir şahsın gelip bir masa \netrafına oturup işten çıkışı ile ilgili belgeleri imzalattıklarını, arabulucunun kendisiyle hiç konuşmadığı \ngibi kendisine bir soru sormadığını imzalatılan belgeyi okumasına müsaade edilmediğini, bir örneğinin \nkendisine verilmediğini, bankaya yatan kısım dışındaki bedelin 2 gün sonra elden ödeneceği \nsöylenmesine rağmen ödenmediğini, sözleşmeyi kabul etmediğini beyan etmiştir. \n",
+      "blocks": [
+        {
+          "text": "T.C.",
+          "max_font_size": 11.036693572998047,
+          "bbox": [
+            288.9598693847656,
+            70.37954711914062,
+            308.6068420410156,
+            81.41624450683594
+          ]
+        },
+        {
+          "text": "YARGITAY",
+          "max_font_size": 11.036693572998047,
+          "bbox": [
+            274.4398498535156,
+            95.81954956054688,
+            323.26568603515625,
+            106.85624694824219
+          ]
+        },
+        {
+          "text": "9. Hukuk Dairesi",
+          "max_font_size": 11.036693572998047,
+          "bbox": [
+            260.39984130859375,
+            121.25955200195312,
+            337.3023681640625,
+            132.29624938964844
+          ]
+        },
+        {
+          "text": "",
+          "max_font_size": 11.036693572998047,
+          "bbox": [
+            70.80038452148438,
+            148.71861267089844,
+            73.29393005371094,
+            159.75531005859375
+          ]
+        },
+        {
+          "text": "ESAS NO : 2016/25300",
+          "max_font_size": 11.036693572998047,
+          "bbox": [
+            70.80038452148438,
+            174.1586151123047,
+            206.50393676757812,
+            185.1953125
+          ]
+        },
+        {
+          "text": "KARAR NO : 2016/21744",
+          "max_font_size": 11.036693572998047,
+          "bbox": [
+            70.80038452148438,
+            199.5985565185547,
+            204.0084228515625,
+            210.63525390625
+          ]
+        },
+        {
+          "text": "Y A R G I T A Y   İ L A M I",
+          "max_font_size": 11.036693572998047,
+          "bbox": [
+            243.59991455078125,
+            223.13949584960938,
+            354.10504150390625,
+            234.1761932373047
+          ]
+        },
+        {
+          "text": "",
+          "max_font_size": 11.036693572998047,
+          "bbox": [
+            70.80038452148438,
+            250.5985565185547,
+            73.29393005371094,
+            261.63525390625
+          ]
+        },
+        {
+          "text": "MAHKEMESİ : BAKIRKÖY 29. İŞ MAHKEMESİ",
+          "max_font_size": 11.036693572998047,
+          "bbox": [
+            70.80038452148438,
+            276.03857421875,
+            280.1768798828125,
+            287.07525634765625
+          ]
+        },
+        {
+          "text": "TARİHİ : 25/03/2016",
+          "max_font_size": 11.036693572998047,
+          "bbox": [
+            70.80038452148438,
+            301.47857666015625,
+            167.26803588867188,
+            312.5152587890625
+          ]
+        },
+        {
+          "text": "NUMARASI : 2016/86-2016/115",
+          "max_font_size": 11.036693572998047,
+          "bbox": [
+            70.80038452148438,
+            326.9185485839844,
+            233.88784790039062,
+            337.9552307128906
+          ]
+        },
+        {
+          "text": "DAVACI : AT VE TİC LTD ŞTİ. ADINA AVUKAT RK",
+          "max_font_size": 11.036693572998047,
+          "bbox": [
+            70.80038452148438,
+            352.3585510253906,
+            279.68414306640625,
+            363.3952331542969
+          ]
+        },
+        {
+          "text": "DAVALI : CK",
+          "max_font_size": 11.036693572998047,
+          "bbox": [
+            70.80038452148438,
+            377.79852294921875,
+            128.13674926757812,
+            388.835205078125
+          ]
+        },
+        {
+          "text": "",
+          "max_font_size": 11.036693572998047,
+          "bbox": [
+            70.80038452148438,
+            403.238525390625,
+            73.29393005371094,
+            414.27520751953125
+          ]
+        },
+        {
+          "text": "DAVA : Davacı, arabulucu ve taraflar arasında düzenlenen arabuluculuk tutanağına icra edilebilirlik şerhi verilmesine karar verilmesini istemiştir.",
+          "max_font_size": 11.036693572998047,
+          "bbox": [
+            70.80038452148438,
+            428.55853271484375,
+            518.5411987304688,
+            455.0751953125
+          ]
+        },
+        {
+          "text": "Yerel mahkemece, davanın reddine karar verilmiştir.",
+          "max_font_size": 11.036693572998047,
+          "bbox": [
+            70.80039978027344,
+            469.478515625,
+            401.35833740234375,
+            480.51519775390625
+          ]
+        },
+        {
+          "text": "Hüküm süresi içinde davacı avukatı tarafından temyiz edilmiş olmakla, dava dosyası için Tetkik Hakimi  tarafından düzenlenen rapor dinlendikten sonra dosya incelendi, gereği konuşulup düşünüldü:",
+          "max_font_size": 11.036693572998047,
+          "bbox": [
+            70.80039978027344,
+            494.79852294921875,
+            506.459228515625,
+            536.9152221679688
+          ]
+        },
+        {
+          "text": "Y A R G I T A Y     K A R A R I",
+          "max_font_size": 11.036693572998047,
+          "bbox": [
+            235.92054748535156,
+            549.2994384765625,
+            361.65960693359375,
+            560.3361206054688
+          ]
+        },
+        {
+          "text": "Taraflar arasındaki uyuşmazlık arabulucu ve taraflar arasında düzenlenen arabulucu tutanağına mahkemece icra edilebilirlik şerhinin verilmesi gerekip gerekmediği noktasında toplanmaktadır.",
+          "max_font_size": 11.036693572998047,
+          "bbox": [
+            70.8004150390625,
+            576.6385498046875,
+            526.83935546875,
+            603.1552124023438
+          ]
+        },
+        {
+          "text": "Somut uyuşmazlıkta davacı şirket vekili davalı işçi ile işçi alacaklarının belirlenmesi ve ödenmesine ilişkin arabulucu nezaretinde anlaşmaya varıldığını, bu konuda 04.02.2016 tarihli tutanağın düzenlendiğini belirterek bu belgeye icra edilebilirlik şerhi verilmesini talep etmiştir.",
+          "max_font_size": 11.036693572998047,
+          "bbox": [
+            70.80039978027344,
+            617.4384765625,
+            526.8480224609375,
+            659.5551147460938
+          ]
+        },
+        {
+          "text": "Davalı işçi ise davacı işverence işten çıkarıldığını, çıkış esnasında muhasebeci gelecek ve evrakları hazırlayacak diyerek 7-8 saat bekletildiğini, sonra daha önce görmediği bir şahsın gelip bir masa etrafına oturup işten çıkışı ile ilgili belgeleri imzalattıklarını, arabulucunun kendisiyle hiç konuşmadığı gibi kendisine bir soru sormadığını imzalatılan belgeyi okumasına müsaade edilmediğini, bir örneğinin kendisine verilmediğini, bankaya yatan kısım dışındaki bedelin 2 gün sonra elden ödeneceği söylenmesine rağmen ödenmediğini, sözleşmeyi kabul etmediğini beyan etmiştir.",
+          "max_font_size": 11.036693572998047,
+          "bbox": [
+            70.79937744140625,
+            673.8384399414062,
+            526.897216796875,
+            762.1550903320312
+          ]
+        }
+      ],
+      "headings": []
+    },
+    {
+      "page_number": 2,
+      "text": "Mahkemece bu beyan nedeniyle arabuluculuk tutağının kanuna uygun düzenlenmediğinin iddia \nedildiği, taraflar arasında bu konuda ihtilaf olduğu bu nedenle arabuluculuk icra edilebilirlik şerhinin \nverilmesinin uygun bulunmadığı gerekçesiyle istemin reddine verilmiştir. \n6325 sayılı Hukuk Uyuşmazlıklarında Arabuluculuk Kanunu’nun 18. maddesine göre; “(1) \nArabuluculuk faaliyeti sonunda varılan anlaşmanın kapsamı taraflarca belirlenir; anlaşma belgesi \ndüzenlenmesi hâlinde bu belge taraflar ve arabulucu tarafından imzalanır.  \n(2) Taraflar arabuluculuk faaliyeti sonunda bir anlaşmaya varırlarsa, bu anlaşma belgesinin icra \nedilebilirliğine ilişkin şerh verilmesini talep edebilirler. Dava açılmadan önce arabuluculuğa \nbaşvurulmuşsa, anlaşmanın icra edilebilirliğine ilişkin şerh verilmesi, asıl uyuşmazlık hakkındaki görev \nve yetki kurallarına göre belirlenecek olan mahkemeden talep edilebilir. Davanın görülmesi sırasında \narabuluculuğa başvurulması durumunda ise anlaşmanın icra edilebilirliğine ilişkin şerh verilmesi, \ndavanın görüldüğü mahkemeden talep edilebilir. Bu şerhi içeren anlaşma, ilam niteliğinde belge \nsayılır. \n(3) İcra edilebilirlik şerhinin verilmesi, çekişmesiz yargı işidir ve buna ilişkin inceleme dosya üzerinden \nde yapılabilir. Ancak arabuluculuğa elverişli olan aile hukukuna ilişkin uyuşmazlıklarda inceleme \nduruşmalı olarak yapılır. Bu incelemenin kapsamı anlaşmanın içeriğinin arabuluculuğa ve cebri icraya \nelverişli olup olmadığı hususlarıyla sınırlıdır. Anlaşma belgesine icra edilebilirlik şerhi verilmesi için \nmahkemeye yapılacak olan başvuru ile bunun üzerine verilecek kararlara karşı ilgili tarafından istinaf \nyoluna gidilmesi hâlinde, maktu harç alınır. Taraflar anlaşma belgesini icra edilebilirlik şerhi \nverdirmeden başka bir resmî işlemde kullanmak isterlerse, damga vergisi de maktu olarak alınır.” \nAnılan yasal düzenleme karşısında arabuluculuk süreci sonunda düzenlenen anlaşma belgesine icra \nedilebilirlik şerhi verilip verilmeyeceğine ilişkin inceleme anlaşma içeriğinin arabuluculuğa ve cebri \nicraya elverişli olup olmadığı hususlarıyla sınırlıdır.  \nAncak dosyada mevcut arabulucu nezaretinde düzenlenen anlaşma belgesinin iş sözleşmesinin \n03.02.2016 tarihinde sonlanması üzerine aynı gün arabulucu ile birlikte görüşüldüğü ve bir gün sonra \n04.02.2016 tarihinde düzenlendiğinin belirtildiği,  \nTutanakta içeriğinden arabuluculuğa kimin hangi tarihte başvurduğu, anlaşmanın nerede ve ne \nşekilde sağlandığı konularının belirtilmediği, ikinci maddesinde kıdem ve ihbar tazminatları \ntoplamından oluşan 11.668,82 TL. ödeme dışında işveren nezdindeki kıdem, ihbar, fazla çalışma, \ngenel tatil hafta tatili, yıllık izin prim, ikramiye, ulusal bayram ve genel tatil ücreti alacakları dahil \nolmak üzere hiçbir hak ve alacağı kalmadığı kalmış olsa bile bu miktarın dışındaki alacaklardan feragat \nettiğini, işvereni her şekilde ibra ettiğini kabul ettiği yönünde ibare bulunduğu anlaşılmaktadır.  \n6325 sayılı Arabuluculuk Kanunu’nun 1. maddesinin ikinci fıkrasında “Bu Kanun, yabancılık unsuru \ntaşıyanlar da dâhil olmak üzere, ancak tarafların üzerinde serbestçe tasarruf edebilecekleri iş veya \nişlemlerden doğan özel hukuk uyuşmazlıklarının çözümlenmesinde uygulanır. Şu kadar ki, aile içi \nşiddet iddiasını içeren uyuşmazlıklar arabuluculuğa elverişli değildir.” hükmü düzenlenmiştir. Diğer \ntaraftan 6098 sayılı Türk Borçlar Kanunu’nun 420. maddesinin ikinci fıkrasında  “…ibra tarihi itibarıyla \nsözleşmenin sona ermesinden başlayarak en az bir aylık sürenin geçmiş bulunması, ibra konusu \nalacağın türünün ve miktarının açıkça belirtilmesi, ödemenin hak tutarına nazaran noksansız ve banka \naracılığıyla yapılması şarttır. Bu unsurları taşımayan ibra sözleşmeleri veya ibraname kesin olarak \n",
+      "blocks": [
+        {
+          "text": "Mahkemece bu beyan nedeniyle arabuluculuk tutağının kanuna uygun düzenlenmediğinin iddia edildiği, taraflar arasında bu konuda ihtilaf olduğu bu nedenle arabuluculuk icra edilebilirlik şerhinin verilmesinin uygun bulunmadığı gerekçesiyle istemin reddine verilmiştir.",
+          "max_font_size": 11.036693572998047,
+          "bbox": [
+            70.79995727539062,
+            72.27861022949219,
+            526.8829956054688,
+            114.395263671875
+          ]
+        },
+        {
+          "text": "6325 sayılı Hukuk Uyuşmazlıklarında Arabuluculuk Kanunu’nun 18. maddesine göre; “(1) Arabuluculuk faaliyeti sonunda varılan anlaşmanın kapsamı taraflarca belirlenir; anlaşma belgesi düzenlenmesi hâlinde bu belge taraflar ve arabulucu tarafından imzalanır.",
+          "max_font_size": 11.036693572998047,
+          "bbox": [
+            70.79995727539062,
+            128.67857360839844,
+            526.8628540039062,
+            170.67523193359375
+          ]
+        },
+        {
+          "text": "(2) Taraflar arabuluculuk faaliyeti sonunda bir anlaşmaya varırlarsa, bu anlaşma belgesinin icra edilebilirliğine ilişkin şerh verilmesini talep edebilirler. Dava açılmadan önce arabuluculuğa başvurulmuşsa, anlaşmanın icra edilebilirliğine ilişkin şerh verilmesi, asıl uyuşmazlık hakkındaki görev ve yetki kurallarına göre belirlenecek olan mahkemeden talep edilebilir. Davanın görülmesi sırasında arabuluculuğa başvurulması durumunda ise anlaşmanın icra edilebilirliğine ilişkin şerh verilmesi, davanın görüldüğü mahkemeden talep edilebilir. Bu şerhi içeren anlaşma, ilam niteliğinde belge sayılır.",
+          "max_font_size": 11.036693572998047,
+          "bbox": [
+            70.79997253417969,
+            184.95848083496094,
+            526.9016723632812,
+            288.75506591796875
+          ]
+        },
+        {
+          "text": "(3) İcra edilebilirlik şerhinin verilmesi, çekişmesiz yargı işidir ve buna ilişkin inceleme dosya üzerinden de yapılabilir. Ancak arabuluculuğa elverişli olan aile hukukuna ilişkin uyuşmazlıklarda inceleme duruşmalı olarak yapılır. Bu incelemenin kapsamı anlaşmanın içeriğinin arabuluculuğa ve cebri icraya elverişli olup olmadığı hususlarıyla sınırlıdır. Anlaşma belgesine icra edilebilirlik şerhi verilmesi için mahkemeye yapılacak olan başvuru ile bunun üzerine verilecek kararlara karşı ilgili tarafından istinaf yoluna gidilmesi hâlinde, maktu harç alınır. Taraflar anlaşma belgesini icra edilebilirlik şerhi verdirmeden başka bir resmî işlemde kullanmak isterlerse, damga vergisi de maktu olarak alınır.”",
+          "max_font_size": 11.036693572998047,
+          "bbox": [
+            70.79997253417969,
+            303.03839111328125,
+            526.8938598632812,
+            406.83502197265625
+          ]
+        },
+        {
+          "text": "Anılan yasal düzenleme karşısında arabuluculuk süreci sonunda düzenlenen anlaşma belgesine icra edilebilirlik şerhi verilip verilmeyeceğine ilişkin inceleme anlaşma içeriğinin arabuluculuğa ve cebri icraya elverişli olup olmadığı hususlarıyla sınırlıdır.",
+          "max_font_size": 11.036693572998047,
+          "bbox": [
+            70.80094909667969,
+            421.11834716796875,
+            526.8948974609375,
+            463.2350158691406
+          ]
+        },
+        {
+          "text": "Ancak dosyada mevcut arabulucu nezaretinde düzenlenen anlaşma belgesinin iş sözleşmesinin 03.02.2016 tarihinde sonlanması üzerine aynı gün arabulucu ile birlikte görüşüldüğü ve bir gün sonra 04.02.2016 tarihinde düzenlendiğinin belirtildiği,",
+          "max_font_size": 11.036693572998047,
+          "bbox": [
+            70.80197143554688,
+            477.5183410644531,
+            526.8384399414062,
+            519.5149536132812
+          ]
+        },
+        {
+          "text": "Tutanakta içeriğinden arabuluculuğa kimin hangi tarihte başvurduğu, anlaşmanın nerede ve ne şekilde sağlandığı konularının belirtilmediği, ikinci maddesinde kıdem ve ihbar tazminatları toplamından oluşan 11.668,82 TL. ödeme dışında işveren nezdindeki kıdem, ihbar, fazla çalışma, genel tatil hafta tatili, yıllık izin prim, ikramiye, ulusal bayram ve genel tatil ücreti alacakları dahil olmak üzere hiçbir hak ve alacağı kalmadığı kalmış olsa bile bu miktarın dışındaki alacaklardan feragat ettiğini, işvereni her şekilde ibra ettiğini kabul ettiği yönünde ibare bulunduğu anlaşılmaktadır.",
+          "max_font_size": 11.036693572998047,
+          "bbox": [
+            70.80093383789062,
+            533.79833984375,
+            526.8953857421875,
+            622.2349853515625
+          ]
+        },
+        {
+          "text": "6325 sayılı Arabuluculuk Kanunu’nun 1. maddesinin ikinci fıkrasında “Bu Kanun, yabancılık unsuru taşıyanlar da dâhil olmak üzere, ancak tarafların üzerinde serbestçe tasarruf edebilecekleri iş veya işlemlerden doğan özel hukuk uyuşmazlıklarının çözümlenmesinde uygulanır. Şu kadar ki, aile içi şiddet iddiasını içeren uyuşmazlıklar arabuluculuğa elverişli değildir.” hükmü düzenlenmiştir. Diğer taraftan 6098 sayılı Türk Borçlar Kanunu’nun 420. maddesinin ikinci fıkrasında  “…ibra tarihi itibarıyla sözleşmenin sona ermesinden başlayarak en az bir aylık sürenin geçmiş bulunması, ibra konusu alacağın türünün ve miktarının açıkça belirtilmesi, ödemenin hak tutarına nazaran noksansız ve banka aracılığıyla yapılması şarttır. Bu unsurları taşımayan ibra sözleşmeleri veya ibraname kesin olarak",
+          "max_font_size": 11.036693572998047,
+          "bbox": [
+            70.80099487304688,
+            636.518310546875,
+            526.9154663085938,
+            755.554931640625
+          ]
+        }
+      ],
+      "headings": []
+    },
+    {
+      "page_number": 3,
+      "text": "hükümsüzdür.” düzenlemesine yer verilmiştir. 6098 sayılı TBK.’un bu düzenlemesi emredici \nniteliktedir. Bu düzenleme nedeni ile işveren ve işçi arasında, işçilik alacakları konusundaki \nuyuşmazlığa ilişkin  arabuluculuk tutanağının düzenlendiği tarih ve ibra beyanının içeriği dikkate \nalındığında, tarafların üzerinde serbestçe tasarruf edemeyecekleri bir zamanda  uyuşmazlık konusu \nolmadan ve işçinin başvurusu bulunmadan ibra niteliğinde arabuluculuk tutanağı düzenlemişlerdir. \nAlınan bu ibra niteliğindeki tutanak,  tarih ve içeriği itibari ile arabuluculuğa ve niteliği itibari ile de \ncebri icraya elverişli değildir. Açıklanan nedenlerle dosyada bulunan anlaşma belgesine icra \nedilebilirlik şerhinin de verilemeyeceği anlaşıldığından, davalının temyiz itirazlarının reddiyle sonucu \nitibariyle doğru olan yerel mahkeme kararın bu gerekçeyle ONANMASINA, 08.12.2016 günü oybirliği \nile karar verildi. \n",
+      "blocks": [
+        {
+          "text": "hükümsüzdür.” düzenlemesine yer verilmiştir. 6098 sayılı TBK.’un bu düzenlemesi emredici niteliktedir. Bu düzenleme nedeni ile işveren ve işçi arasında, işçilik alacakları konusundaki uyuşmazlığa ilişkin  arabuluculuk tutanağının düzenlendiği tarih ve ibra beyanının içeriği dikkate alındığında, tarafların üzerinde serbestçe tasarruf edemeyecekleri bir zamanda  uyuşmazlık konusu olmadan ve işçinin başvurusu bulunmadan ibra niteliğinde arabuluculuk tutanağı düzenlemişlerdir. Alınan bu ibra niteliğindeki tutanak,  tarih ve içeriği itibari ile arabuluculuğa ve niteliği itibari ile de cebri icraya elverişli değildir. Açıklanan nedenlerle dosyada bulunan anlaşma belgesine icra edilebilirlik şerhinin de verilemeyeceği anlaşıldığından, davalının temyiz itirazlarının reddiyle sonucu itibariyle doğru olan yerel mahkeme kararın bu gerekçeyle ONANMASINA, 08.12.2016 günü oybirliği ile karar verildi.",
+          "max_font_size": 11.036693572998047,
+          "bbox": [
+            70.79995727539062,
+            72.27861022949219,
+            526.9100952148438,
+            222.51507568359375
+          ]
+        }
+      ],
+      "headings": []
+    }
+  ]
+}
