@@ -23,7 +23,7 @@ stats_file = "emsal_stats.json"
 # PDF Ayrıştırma
 # =====================
 def parse_pdf():
-    doc = fitz.open(pdf_path)
+    doc = fitz.open(pdf_path) # type: ignore
     pages = []
     for i, page in enumerate(doc, start=1): # type: ignore
         text = page.get_text("text")
