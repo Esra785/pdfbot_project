@@ -1,222 +1,174 @@
-import os
-import json
-import fitz  # (PyMuPDF) PDF okuma
-import matplotlib.pyplot as plt
-import pandas as pd
-from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer
-from reportlab.lib.styles import getSampleStyleSheet
-from reportlab.pdfbase.cidfonts import UnicodeCIDFont
-from reportlab.pdfbase import pdfmetrics
-from pptx import Presentation
-from pptx.util import Inches, Pt
+import os, glob, math
+from typing import TypedDict, List, Dict, Any
+import numpy as np
+import pdfplumber
+
+# LangGraph / LangChain
+from langgraph.graph import StateGraph, END
 from langchain_ollama import ChatOllama
+from langchain_community.embeddings import OllamaEmbeddings
+from langchain_core.messages import SystemMessage, HumanMessage
 
-# =====================
-# Dosya yolları
-# =====================
-pdf_path = "data/Emsal-Karar.pdf"
-parsed_file = "parsed.json"
-summarized_file = "summarized.json"
-stats_file = "emsal_stats.json"
+# ==== AYARLAR ====
+BASE_URL = "http://localhost:11434"
+CHAT_MODEL = "gemma3:4b"            # <-- istenen LLM
+EMBED_MODEL = "nomic-embed-text:latest"    # <-- Ollama embedding modeli
+PDF_GLOBS = ["Emsal-Karar.pdf", "*.pdf"]  # önce Emsal-Karar, yoksa klasördeki tüm pdf’ler
+CHUNK_SIZE = 900
+CHUNK_OVERLAP = 120
+TOP_K = 5
+MIN_SCORE = 0.22  # alaka eşiği (0-1)
 
-# =====================
-# PDF Ayrıştırma
-# =====================
-def parse_pdf():
-    doc = fitz.open(pdf_path) # type: ignore
-    pages = []
-    for i, page in enumerate(doc, start=1): # type: ignore
-        text = page.get_text("text")
-        pages.append({"page": i, "text": text.strip()})
-    with open(parsed_file, "w", encoding="utf-8") as f:
-        json.dump(pages, f, ensure_ascii=False, indent=2)
-    print(f"✅ PDF ayrıştırıldı, '{parsed_file}' dosyası oluşturuldu.")
-
-# =====================
-# Özetleme
-# =====================
-def summarize():
-    with open(parsed_file, "r", encoding="utf-8") as f:
-        pages = json.load(f)
-
-    llm = ChatOllama(model="gemma3:4b")
-    summaries = []
-    for page in pages:
-        prompt = f"Şu içeriği özetle:\n\n{page['text']}"
-        response = llm.invoke(prompt)
-        summaries.append({
-            "page": page["page"],
-            "summary": response.content.strip() # type: ignore
-        })
-
-    with open(summarized_file, "w", encoding="utf-8") as f:
-        json.dump(summaries, f, ensure_ascii=False, indent=2)
-    print(f"✅ Özetleme tamamlandı: {summarized_file}")
-
-def load_or_summarize():
-    if not os.path.exists(summarized_file):
-        print("ℹ️ İlk kez çalıştırılıyor, özetleme yapılıyor...")
-        if not os.path.exists(parsed_file):
-            parse_pdf()
-        summarize()
-
-# =====================
-# Chatbot
-# =====================
-def chatbot():
-    load_or_summarize()
-    with open(summarized_file, "r", encoding="utf-8") as f:
-        summaries = json.load(f)
-
-    llm = ChatOllama(model="gemma3:4b")
-    print("📖 PDF Chatbot hazır! Çıkmak için 'q' yaz.\n")
-
-    while True:
-        question = input("Sorunuzu yazın: ")
-        if question.lower() == "q":
+# ==== BASIT PARÇALAYICI ====
+def split_text(text: str, chunk_size=CHUNK_SIZE, overlap=CHUNK_OVERLAP) -> List[str]:
+    text = " ".join(text.split())
+    if not text:
+        return []
+    chunks, start = [], 0
+    while start < len(text):
+        end = min(len(text), start + chunk_size)
+        # cümle sonuna doğru kırpmaya çalış:
+        cut = end
+        for i in range(end, start, -1):
+            if text[i-1] in ".!?\n" and (i - start) >= chunk_size * 0.7:
+                cut = i
+                break
+        chunk = text[start:cut]
+        chunks.append(chunk.strip())
+        if cut >= len(text):
             break
-        context = "\n".join(
-            f"- Sayfa {item['page']}: {item['summary']}" for item in summaries
-        )
-        prompt = f"{context}\n\nSoru: {question}\nCevap:"
-        response = llm.invoke(prompt)
-        print(f"\n🤖 Cevap: {response.content.strip()}\n") # type: ignore
+        start = max(0, cut - overlap)
+    return [c for c in chunks if c]
 
-# =====================
-# İstatistikler
-# =====================
-def generate_stats():
-    load_or_summarize()
-    with open(summarized_file, "r", encoding="utf-8") as f:
-        summaries = json.load(f)
+# ==== PDF OKUMA ====
+def load_pdfs() -> List[Dict[str, Any]]:
+    paths = []
+    for pat in PDF_GLOBS:
+        paths.extend([p for p in glob.glob(pat) if os.path.isfile(p)])
+    # Emsal-Karar varsa yalnız onu kullan
+    paths = list(dict.fromkeys(paths))  # unique & order
+    if "Emsal-Karar.pdf" in paths:
+        paths = ["Emsal-Karar.pdf"]
 
-    stats = {
-        "Toplam Sayfa": len(summaries),
-        "Özeti Olan Sayfa": sum(1 for s in summaries if s["summary"]),
-        "Özetsiz Sayfa": sum(1 for s in summaries if not s["summary"]),
-    }
+    docs = []
+    for path in paths:
+        try:
+            with pdfplumber.open(path) as pdf:
+                for i, page in enumerate(pdf.pages, start=1):
+                    txt = page.extract_text() or ""
+                    if txt.strip():
+                        docs.append({"path": path, "page": i, "text": txt})
+        except Exception as e:
+            print(f"[uyarı] {path} okunamadı: {e}")
+    return docs
 
-    lengths = [len(s["summary"]) for s in summaries if s["summary"]]
-    if lengths:
-        stats["Ortalama Özet Uzunluğu"] = sum(lengths) / len(lengths) # type: ignore
-        stats["En Kısa Özet Uzunluğu"] = min(lengths)
-        stats["En Uzun Özet Uzunluğu"] = max(lengths)
+# ==== İNDEKS (embedding + cosine) ====
+class SimpleIndex:
+    def __init__(self, chunks: List[Dict[str, Any]], embed):
+        self.chunks = chunks
+        self.embed = embed
+        texts = [c["text"] for c in self.chunks]
+        vecs = self.embed.embed_documents(texts) if texts else []
+        self.mat = np.array(vecs, dtype=np.float32) if vecs else np.zeros((0, 768), dtype=np.float32)
+        self.norm = np.linalg.norm(self.mat, axis=1, keepdims=True) + 1e-8
+        self.unit = self.mat / self.norm
 
-    for s in summaries:
-        stats[f"Sayfa {s['page']}"] = len(s["summary"])
+    def search(self, query: str, k: int = TOP_K, min_score: float = MIN_SCORE):
+        if self.unit.shape[0] == 0:
+            return []
+        q = np.array(self.embed.embed_query(query), dtype=np.float32)
+        q = q / (np.linalg.norm(q) + 1e-8)
+        sims = self.unit @ q
+        idx = np.argsort(-sims)[:k]
+        results = []
+        for i in idx:
+            score = float(sims[i])
+            if score < min_score:
+                continue
+            item = dict(self.chunks[i])
+            item["score"] = score
+            results.append(item)
+        return results
 
-    with open(stats_file, "w", encoding="utf-8") as f:
-        json.dump(stats, f, ensure_ascii=False, indent=2)
+def build_index():
+    raw = load_pdfs()
+    # sayfa bazlı parçaları CHUNK’a böl
+    chunks = []
+    for r in raw:
+        for part in split_text(r["text"]):
+            chunks.append({"path": r["path"], "page": r["page"], "text": part})
+    embed = OllamaEmbeddings(model=EMBED_MODEL, base_url=BASE_URL)
+    return SimpleIndex(chunks, embed)
 
-    print("📊 PDF İstatistikleri:")
-    for k, v in stats.items():
-        print(f"- {k}: {v}")
-    print(f"\n✅ İstatistikler kaydedildi: {stats_file}")
+# Global index ve LLM
+INDEX = build_index()
+LLM = ChatOllama(model=CHAT_MODEL, base_url=BASE_URL, temperature=0)
 
-# =====================
-# Grafik
-# =====================
-def generate_graph():
-    if not os.path.exists(stats_file):
-        generate_stats()
+# ==== LANGGRAPH STATE ====
+class State(TypedDict, total=False):
+    question: str
+    context: List[Dict[str, Any]]
+    answer: str
+    done: bool
 
-    with open(stats_file, "r", encoding="utf-8") as f:
-        stats = json.load(f)
+SYS_PROMPT = (
+    "Aşağıdaki PDF alıntılarını KAYNAK olarak kullan. "
+    "Yalnız bu alıntılara dayalı, TÜRKÇE ve kısa bir yanıt ver. "
+    "Kaynaklarda yoksa 'Bu soruya ilişkin bilgi, elimdeki emsal kararda yer almıyor.' de. "
+    "Uydurma yapma. Mümkünse sayfa numarası belirt."
+)
 
-    pages = [k for k in stats.keys() if k.startswith("Sayfa")]
-    lengths = [stats[k] for k in pages]
+def format_context(ctx: List[Dict[str, Any]]) -> str:
+    lines = []
+    for c in ctx:
+        src = os.path.basename(c["path"])
+        lines.append(f"(s:{src} p:{c['page']} sk:{c['score']:.2f}) {c['text']}")
+    return "\n\n".join(lines) if lines else "—"
 
-    plt.figure(figsize=(6, 4))
-    plt.bar(pages, lengths)
-    plt.title("Sayfa Bazlı Özet Uzunlukları")
-    plt.xlabel("Sayfa")
-    plt.ylabel("Özet Uzunluğu (karakter)")
-    plt.xticks(rotation=45)
-    plt.tight_layout()
-    plt.savefig("emsal_summary_lengths.png")
-    plt.close()
-    print("✅ Grafik oluşturuldu: emsal_summary_lengths.png")
+# ==== NODLAR ====
+def retrieve_node(state: State) -> State:
+    q = (state.get("question") or "").strip()
+    ctx = INDEX.search(q) if q else []
+    return {"context": ctx}  # <- State’e yazıyor
 
-# =====================
-# Rapor (PDF)
-# =====================
-def generate_report():
-    if not os.path.exists(stats_file):
-        generate_stats()
+def generate_node(state: State) -> State:
+    q = (state.get("question") or "").strip()
+    ctx = state.get("context") or []
+    if not q:
+        return {"answer": "Soru boş olamaz.", "done": True}
 
-    with open(stats_file, "r", encoding="utf-8") as f:
-        stats = json.load(f)
+    # bağlam boşsa direkt negatif cevap ver
+    if not ctx:
+        return {"answer": "Bu soruya ilişkin bilgi, elimdeki emsal kararda yer almıyor.", "done": True}
 
-    pdfmetrics.registerFont(UnicodeCIDFont("HeiseiMin-W3"))
-    doc = SimpleDocTemplate("emsal_report.pdf")
-    styles = getSampleStyleSheet()
-    story = []
+    context_str = format_context(ctx)
+    prompt = (
+        f"Kaynak alıntılar:\n{context_str}\n\n"
+        f"Kullanıcı Sorusu: {q}\n\n"
+        "Yalnız yukarıdaki alıntılardan yararlanarak kısa yanıt ver; "
+        "varsa ilgili sayfa numarasını da belirt."
+    )
+    msg = LLM.invoke([SystemMessage(content=SYS_PROMPT), HumanMessage(content=prompt)])
+    return {"answer": msg.content.strip(), "done": True} # type: ignore
 
-    story.append(Paragraph("📑 Emsal Karar İstatistik Raporu", styles["Title"]))
-    story.append(Spacer(1, 12))
+# ==== GRAF ====
+graph = StateGraph(State)
+graph.add_node("retrieve", retrieve_node)
+graph.add_node("generate", generate_node)
+graph.set_entry_point("retrieve")
+graph.add_edge("retrieve", "generate")
+graph.add_edge("generate", END)
+app = graph.compile()
 
-    for k, v in stats.items():
-        story.append(Paragraph(f"<b>{k}:</b> {v}", styles["Normal"]))
-        story.append(Spacer(1, 6))
-
-    doc.build(story)
-    print("✅ Rapor oluşturuldu: emsal_report.pdf")
-
-# =====================
-# Sunum (PPTX)
-# =====================
-def generate_presentation():
-    load_or_summarize()
-    with open(summarized_file, "r", encoding="utf-8") as f:
-        summaries = json.load(f)
-
-    prs = Presentation()
-    title_slide_layout = prs.slide_layouts[0]
-    slide = prs.slides.add_slide(title_slide_layout)
-    slide.shapes.title.text = "Emsal Karar Sunumu" # type: ignore
-    slide.placeholders[1].text = "PDF özetlerinden oluşturulmuş sunum" # type: ignore
-
-    for item in summaries:
-        slide_layout = prs.slide_layouts[1]
-        slide = prs.slides.add_slide(slide_layout)
-        slide.shapes.title.text = f"Sayfa {item['page']}" # type: ignore
-        slide.placeholders[1].text = item["summary"] # type: ignore
-
-    prs.save("emsal_final_presentation.pptx")
-    print("✅ Final sunum oluşturuldu: emsal_final_presentation.pptx")
-
-# =====================
-# Menü
-# =====================
-def menu():
-    while True:
-        print("\n=== PDFBot Final ===")
-        print("1 - Chatbot (soru-cevap)")
-        print("2 - İstatistikleri gör")
-        print("3 - Grafik oluştur")
-        print("4 - Rapor oluştur (PDF)")
-        print("5 - Sunum oluştur (PPTX)")
-        print("q - Çıkış")
-
-        choice = input("Seçiminiz: ").strip()
-        if choice == "1":
-            chatbot()
-        elif choice == "2":
-            generate_stats()
-        elif choice == "3":
-            generate_graph()
-        elif choice == "4":
-            generate_report()
-        elif choice == "5":
-            generate_presentation()
-        elif choice.lower() == "q":
-            print("👋 Çıkılıyor...")
-            break
-        else:
-            print("⚠️ Geçersiz seçim, tekrar deneyin.")
-
-# =====================
-# Ana Çalıştırma
-# =====================
+# ==== CLI ====
 if __name__ == "__main__":
-    menu()
+    if len(INDEX.chunks) == 0:
+        print("⚠️ Hiç PDF bulunamadı veya metin çıkarılamadı. Emsal-Karar.pdf aynı klasörde mi?")
+    else:
+        print(f"✅ İndeks hazır: {len(INDEX.chunks)} parça")
+    while True:
+        q = input("❓ Soru yazın (çıkış için q): ").strip()
+        if q.lower() in {"q", "quit", "exit"}:
+            break
+        out = app.invoke({"question": q})
+        print("🤖:", out.get("answer", "").strip())
