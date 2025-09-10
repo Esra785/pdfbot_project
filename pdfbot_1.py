@@ -23,7 +23,7 @@ except Exception:
 
 if fitz:
     # PyMuPDF ile PDF'i aç
-    doc = fitz.open(str(INPUT_PDF))
+    doc = fitz.open(str(INPUT_PDF)) # type: ignore
     for i, page in enumerate(doc): # type: ignore
         page_text = page.get_text("text") or ""
         page_dict = {"page_number": i+1, "text": page_text, "blocks": []}
