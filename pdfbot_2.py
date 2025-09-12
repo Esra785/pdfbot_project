@@ -13,7 +13,7 @@ OUTPUT_JSON = Path("emsal_classified.json")
 
 # Ollama API ayarları
 OLLAMA_URL = "http://localhost:11434/api/generate"
-MODEL = "gemma3:4b"   # senin modelin bu
+MODEL = "gemma3:4b"  
 
 def query_ollama(prompt: str) -> str:
     """
@@ -55,7 +55,7 @@ def classify_and_summarize(text: str):
     response = query_ollama(prompt)
 
     try:
-        # Eğer yanıtın içinde JSON blok varsa onu ayıkla
+        # Eğer yanıtın içinde JSON blok varsa onu ayıklar
         match = re.search(r"\{.*\}", response, re.DOTALL)
         if match:
             parsed = json.loads(match.group(0))
@@ -70,7 +70,7 @@ def classify_and_summarize(text: str):
 with open(INPUT_JSON, "r", encoding="utf-8") as f:
     data = json.load(f)
 
-# Her sayfa ve blok üzerinde çalış
+# Her sayfa ve blok üzerinde çalışır
 for page in data["pages"]:
     classified_blocks = []
     blocks = page.get("blocks", [])
